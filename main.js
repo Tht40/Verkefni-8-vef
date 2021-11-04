@@ -80,13 +80,13 @@ function playRound(player) {
  */
 function round(e) {
  document.querySelector('rounds__buttons');
-  totalRounds =  round;
+  totalRounds ++;
   show('rounds');
 }
 
 
 
-show('start');
+
 // Takki sem byrjar leik
 document
 
