@@ -79,9 +79,10 @@ function playRound(player) {
  * @param {Event} e Upplýsingar um atburð
  */
 function round(e) {
- document.querySelector('rounds__buttons');
-  totalRounds ++;
-  show('rounds');
+  //document.querySelector('rounds__buttons');
+
+  //totalRounds ++;
+  show('play');
 }
 
 
