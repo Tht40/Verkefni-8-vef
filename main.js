@@ -4,9 +4,8 @@ import { show } from './lib/ui.js';
 import { updateResultScreen} from './lib/ui.js';
 import { createButtons } from './lib/ui.js';
 
-//import { isValidBestOf } from './lib/rock-paper-scissors.js';
-//import { playAsText } from './lib/rock-paper-scissors.js';
-//import { checkGame } from './lib/rock-paper-scissors.js';
+import { playAsText } from './lib/rock-paper-scissors.js';
+import { checkGame } from './lib/rock-paper-scissors.js';
 
 
 
@@ -54,14 +53,16 @@ const games = [];
  */
 function playRound(player) {
   // Komumst að því hvað tölva spilaði og athugum stöðu leiks
-  computerPlay();
+  var computer = computerPlay();
+  
+  var result = checkGame(player, computer);
 
   // Uppfærum result glugga áður en við sýnum, hér þarf að importa falli
   updateResultScreen({
-    player: player.toString(),
-    computer,
-    result,
-    currentRound,
+    player: playAsText(player.toString()),
+    computer : playAsText(computer),
+    result : result.toString(),
+    currentRound ,
     totalRounds,
     playerWins,
     computerWins,
@@ -79,9 +80,9 @@ function playRound(player) {
  * @param {Event} e Upplýsingar um atburð
  */
 function round(e) {
-  //document.querySelector('rounds__buttons');
-
-  //totalRounds ++;
+  document.querySelector('rounds__buttons');
+  
+  totalRounds += 1;
   show('play');
 }
 
@@ -100,7 +101,18 @@ createButtons(MAX_BEST_OF, round);
 
 // Event listeners fyrir skæri, blað, steinn takka
 // TODO
-document.querySelector('button.scissor')
+document
+  .querySelector('button.scissor')
+  .addEventListener('click', () => show('result'), playRound(1));
+
+document
+  .querySelector('button.rock')
+  .addEventListener('click', () => show('result'), playRound(3));
+
+document
+  .querySelector('button.paper')
+  .addEventListener('click', () => show('result'), playRound(2));
+
 
 /**
  * Uppfærir stöðu yfir alla spilaða leiki þegar leik lýkur.
