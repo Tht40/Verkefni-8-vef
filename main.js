@@ -1,5 +1,14 @@
 // TODO hér vantar að sækja viðeigandi föll úr öðrum modules
+import { computerPlay } from './lib/rock-paper-scissors.js';
 import { show } from './lib/ui.js';
+import { updateResultScreen} from './lib/ui.js';
+import { createButtons } from './lib/ui.js';
+
+//import { isValidBestOf } from './lib/rock-paper-scissors.js';
+//import { playAsText } from './lib/rock-paper-scissors.js';
+//import { checkGame } from './lib/rock-paper-scissors.js';
+
+
 
 /** Hámarks fjöldi best-of leikja, ætti að vera jákvæð heiltala stærri en 0 */
 const MAX_BEST_OF = 10;
@@ -45,6 +54,7 @@ const games = [];
  */
 function playRound(player) {
   // Komumst að því hvað tölva spilaði og athugum stöðu leiks
+  computerPlay();
 
   // Uppfærum result glugga áður en við sýnum, hér þarf að importa falli
   updateResultScreen({
@@ -69,16 +79,23 @@ function playRound(player) {
  * @param {Event} e Upplýsingar um atburð
  */
 function round(e) {
-  // TODO útfæra
+ document.querySelector('rounds__buttons');
+  totalRounds =  round;
+  show('rounds');
 }
 
+
+
+show('start');
 // Takki sem byrjar leik
 document
+
   .querySelector('.start button')
   .addEventListener('click', () => show('rounds'));
+  
 
 // Búum til takka
-// createButtons(MAX_BEST_OF, round);
+createButtons(MAX_BEST_OF, round);
 
 // Event listeners fyrir skæri, blað, steinn takka
 // TODO
@@ -103,3 +120,4 @@ function finishGame() {
 // Næsta umferð og ljúka leik takkar
 document.querySelector('button.finishGame').addEventListener('click', finishGame);
 // TODO takki sem fer með í næstu umferð
+
